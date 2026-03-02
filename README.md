@@ -55,7 +55,7 @@ coords = torch.from_numpy(coords).unsqueeze(0)
 ```
 
 ## CARE WSI Feature Extraction
-We provide an example of how to extract WSI features using CARE in the file `care_wsi_encoder_api.py`. The pretrained CARE weights will be released on Hugging Face.
+We provide an example of how to extract WSI features using CARE in the file `care_wsi_encoder_api.py`. The pretrained CARE weights will be released on Hugging Face. The model weights will be released in the coming days.
 
 
 Moreover, we can obtain ROI features using the following code, as proposed in this paper:
@@ -111,3 +111,4 @@ If you found this work useful, please consider citing:
       url={https://arxiv.org/abs/2602.21637}, 
 }
 ```
+
