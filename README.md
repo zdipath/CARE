@@ -19,6 +19,7 @@ Foundation models have recently achieved impressive success in computational pat
 
 ## 🔥 Update
 - [2026.02.21] Our paper was accepted by CVPR2026.
+- The model weights will be released in the coming days.
 
 ## Data Preprocess
 we follow the CLAM's WSI preprocessing solution. To satisfy CARE’s requirement for patch coordinate information, we store both the extracted features and their corresponding coordinates in a single `.npy` file.
@@ -116,6 +117,7 @@ If you found this work useful, please consider citing:
       url={https://arxiv.org/abs/2602.21637}, 
 }
 ```
+
 
 
 
