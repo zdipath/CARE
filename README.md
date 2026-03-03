@@ -4,6 +4,7 @@
 
 ## A Molecular-Guided Foundation Model with Adaptive Region Modeling for Whole Slide Image Analysis
 
+This paper was accepted by CVPR2026.
 <div align="center">
 
 [![a](https://img.shields.io/badge/Download_Model-huggingface-blue)](https://huddingface/)
@@ -111,4 +112,5 @@ If you found this work useful, please consider citing:
       url={https://arxiv.org/abs/2602.21637}, 
 }
 ```
+
 
