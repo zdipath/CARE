@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![a](https://img.shields.io/badge/Download_Model-huggingface-blue)](https://huddingface/)
+[![a](https://img.shields.io/badge/Download_Model-huggingface-blue)](https://huggingface.co/Zipper-1/CARE)
 [![arXiv](https://img.shields.io/badge/Arxiv-2602.21637-red
 )](https://arxiv.org/abs/2602.21637)
 
@@ -117,6 +117,7 @@ If you found this work useful, please consider citing:
       url={https://arxiv.org/abs/2602.21637}, 
 }
 ```
+
 
 
 
