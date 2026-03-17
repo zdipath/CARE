@@ -4,25 +4,21 @@
 
 ## A Molecular-Guided Foundation Model with Adaptive Region Modeling for Whole Slide Image Analysis
 
-
-
 <div align="center">
 
-[![a](https://img.shields.io/badge/Download_Model-huggingface-blue)](https://huggingface.co/Zipper-1/CARE)
+[![a](https://img.shields.io/badge/Model-huggingface-blue)](https://huggingface.co/Zipper-1/CARE)
 [![arXiv](https://img.shields.io/badge/Arxiv-2602.21637-red
 )](https://arxiv.org/abs/2602.21637)
 
 </div>
 
-## Abstract
-Foundation models have recently achieved impressive success in computational pathology, demonstrating strong generalization across diverse histopathology tasks. However, existing models overlook the heterogeneous and non-uniform organization of pathological regions of interest (ROIs) because they rely on natural image backbones not tailored for tissue morphology. Consequently, they often fail to capture the coherent tissue architecture beyond isolated patches, limiting interpretability and clinical relevance. To address these challenges, we present Cross-modal Adaptive Region Encoder (CARE), a foundation model for pathology that automatically partitions WSIs into several morphologically relevant regions. Specifically, CARE employs a two-stage pretraining strategy: (1) a self-supervised unimodal pretraining stage that learns morphological representations from 34,277 whole-slide images (WSIs) without segmentation annotations, and (2) a cross-modal alignment stage that leverages RNA and protein profiles to refine the construction and representation of adaptive regions. This molecular guidance enables CARE to identify biologically relevant patterns and generate irregular yet coherent tissue regions, selecting the most representative area as ROI. CARE supports a broad range of pathology-related tasks, using either the ROI feature or the slide-level feature obtained by aggregating adaptive regions. Based on only one-tenth of the pretraining data typically used by mainstream foundation models, CARE achieves superior average performance across 33 downstream benchmarks, including morphological classification, molecular prediction, and survival analysis, and outperforms other foundation model baselines overall.
-
 ## 🔥 Update
-- [2026.02.21] Our paper was accepted by CVPR2026.
-- The model weights will be released in the coming days.
+- [2026.03.11] The model weight was released in [Hugging Face](https://huggingface.co/Zipper-1/CARE).
+- [2026.02.21] Our paper was accepted by CVPR 2026.
 
-## Data Preprocess
-we follow the CLAM's WSI preprocessing solution. To satisfy CARE’s requirement for patch coordinate information, we store both the extracted features and their corresponding coordinates in a single `.npy` file.
+
+## Data Preprocessing
+We follow the CLAM WSI preprocessing pipeline. CARE builds a feature grid from CONCH v1.5 patch features using patch coordinates. We store both the extracted features and their corresponding coordinates in a single `.npy` file.
 The saving format is as follows:
 
 ```python
@@ -57,17 +53,16 @@ coords = np.array(
 )
 # Convert features and coordinates to tensors
 patch_embedding = torch.from_numpy(features).unsqueeze(0).to(device)
-coords = torch.from_numpy(coords).unsqueeze(0)
+coords = torch.from_numpy(coords).unsqueeze(0).to(device)
 ```
+
+More specifically, if you use the CLAM `.h5` file format, please follow the usage instructions on [Hugging Face](https://huggingface.co/Zipper-1/CARE).
+
+
+
 
 ## CARE WSI Feature Extraction
-We provide an example of how to extract WSI features using CARE in the file `care_wsi_encoder_api.py`. The pretrained CARE weights will be released on Hugging Face. The model weights will be released in the coming days.
-
-
-Moreover, we can obtain ROI features using the following code, as proposed in this paper:
-```python
-roi_embedding = model.get_roi_features(patch_embedding, N_values, coords)
-```
+We provide an example of how to extract WSI features using CARE in the file `care_wsi_encoder_api.py`. The pretrained CARE weight is released on Hugging Face.
 
 
 
@@ -105,21 +100,171 @@ python -u train_wsi_model.py \
 
 **Note:** Before running the linear probing evaluation, please first extract CONCH v1.5 patch features using the CLAM codebase, and save the features together with their coordinates in `.npy` format.
 
-If you found this work useful, please consider citing:
-```bibtex
-@misc{zhang2026care,
-      title={CARE: A Molecular-Guided Foundation Model with Adaptive Region Modeling for Whole Slide Image Analysis}, 
-      author={Di Zhang and Zhangpeng Gong and Xiaobo Pang and Jiashuai Liu and Junbo Lu and Hao Cui and Jiusong Ge and Zhi Zeng and Kai Yi and Yinghua Li and Si Liu and Tingsong Yu and Haoran Wang and Mireia Crispin-Ortuzar and eimiao Yu and Chen Li and Zeyu Gao},
-      year={2026},
-      eprint={2602.21637},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2602.21637}, 
+
+## Result
+
+**Bold** indicates the best result, <u>underline</u> indicates the second-best result, and all reported results are obtained with logistic regression.
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Model</th>
+      <th colspan="2">EBRAINS <br> 30 classes</th>
+      <th colspan="2">Combine-Lung <br>subtype 2 classes</th>
+      <th colspan="2">Cross-LUNG-fine <br> 3 classes</th>
+      <th colspan="2">MUT-BAP1 <br> 2 classes</th>
+      <th colspan="2">EBRAINS-IDH <br> 2 classes</th>
+      <th colspan="2">CCRCC <br> OS</th>
+    </tr>
+    <tr>
+      <th>ACC</th>
+      <th>F1</th>
+      <th>ACC</th>
+      <th>AUC</th>
+      <th>ACC</th>
+      <th>F1</th>
+      <th>ACC</th>
+      <th>AUC</th>
+      <th>ACC</th>
+      <th>AUC</th>
+      <th>C-index</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mean-pool</td>
+      <td>65.8</td>
+      <td>71.4</td>
+      <td>88.1</td>
+      <td>95.4</td>
+      <td>63.6</td>
+      <td>73.7</td>
+      <td>61.0</td>
+      <td>84.8</td>
+      <td>87.8</td>
+      <td>94.2</td>
+      <td>48.4</td>
+    </tr>
+    <tr>
+      <td>CHIEF</td>
+      <td>60.6</td>
+      <td>68.4</td>
+      <td>87.6</td>
+      <td>95.6</td>
+      <td><strong>65.7</strong></td>
+      <td><u>74.2</u></td>
+      <td>57.2</td>
+      <td>85.9</td>
+      <td>88.9</td>
+      <td>95.6</td>
+      <td>53.2</td>
+    </tr>
+    <tr>
+      <td>PRISM</td>
+      <td>59.5</td>
+      <td>65.8</td>
+      <td>86.2</td>
+      <td>95.2</td>
+      <td>58.3</td>
+      <td>68.0</td>
+      <td>57.5</td>
+      <td>86.5</td>
+      <td>88.7</td>
+      <td>94.9</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <td>GigaPath</td>
+      <td>64.7</td>
+      <td>71.6</td>
+      <td>88.4</td>
+      <td>95.6</td>
+      <td>54.2</td>
+      <td>62.2</td>
+      <td><u>61.4</u></td>
+      <td>86.6</td>
+      <td>88.2</td>
+      <td>94.7</td>
+      <td>55.8</td>
+    </tr>
+    <tr>
+      <td>TANGLE</td>
+      <td>64.5</td>
+      <td>71.2</td>
+      <td>86.3</td>
+      <td>94.7</td>
+      <td>60.3</td>
+      <td>70.1</td>
+      <td><strong>63.6</strong></td>
+      <td>86.8</td>
+      <td>89.0</td>
+      <td>95.2</td>
+      <td>46.6</td>
+    </tr>
+    <tr>
+      <td>FEATHER</td>
+      <td>68.2</td>
+      <td>73.1</td>
+      <td>85.5</td>
+      <td>94.1</td>
+      <td>56.2</td>
+      <td>68.5</td>
+      <td>54.7</td>
+      <td>84.3</td>
+      <td>88.5</td>
+      <td>95.9</td>
+      <td><u>56.6</u></td>
+    </tr>
+    <tr>
+      <td>TITAN</td>
+      <td><strong>74.8</strong></td>
+      <td><strong>78.8</strong></td>
+      <td><strong>89.2</strong></td>
+      <td><u>96.6</u></td>
+      <td>63.8</td>
+      <td><u>74.2</u></td>
+      <td>59.8</td>
+      <td>86.0</td>
+      <td><u>91.4</u></td>
+      <td><strong>96.7</strong></td>
+      <td>40.5</td>
+    </tr>
+    <tr>
+      <td><strong>CARE</strong></td>
+      <td><u>74.0</u></td>
+      <td><u>78.7</u></td>
+      <td><u>89.0</u></td>
+      <td><strong>96.8</strong></td>
+      <td><u>65.5</u></td>
+      <td><strong>74.4</strong></td>
+      <td><u>61.4</u></td>
+      <td><strong>88.9</strong></td>
+      <td><strong>91.5</strong></td>
+      <td><u>96.6</u></td>
+      <td><strong>63.0</td>
+    </tr>
+  </tbody>
+</table>
+
+
+## Citation
+If you find our work useful in your research, please consider citing CARE and CONCH v1.5:
+
+```
+@article{zhang2026care,
+  title={CARE: A Molecular-Guided Foundation Model with Adaptive Region Modeling for Whole Slide Image Analysis},
+  author={Zhang, Di and Gong, Zhangpeng and Pang, Xiaobo and Liu, Jiashuai and Lu, Junbo and Cui, Hao and Ge, Jiusong and Zeng, Zhi and Yi, Kai and Li, Yinghua and others},
+  journal={arXiv preprint arXiv:2602.21637},
+  year={2026}
 }
 ```
-
-
-
-
-
-
+```
+@article{ding2025multimodal,
+  title={A multimodal whole-slide foundation model for pathology},
+  author={Ding, Tong and Wagner, Sophia J and Song, Andrew H and Chen, Richard J and Lu, Ming Y and Zhang, Andrew and Vaidya, Anurag J and Jaume, Guillaume and Shaban, Muhammad and Kim, Ahrong and others},
+  journal={Nature Medicine},
+  pages={1--13},
+  year={2025},
+  publisher={Nature Publishing Group US New York}
+}
+```
