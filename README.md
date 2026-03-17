@@ -103,7 +103,7 @@ python -u train_wsi_model.py \
 
 ## Result
 
-**Bold** indicates the best result, <u>underline</u> indicates the second-best result, and all reported results are obtained with logistic regression.
+**Bold** indicates the best result, `*` indicates the second-best result, and all reported results are obtained with logistic regression.
 
 <table>
   <thead>
@@ -152,7 +152,7 @@ python -u train_wsi_model.py \
       <td>87.6</td>
       <td>95.6</td>
       <td><strong>65.7</strong></td>
-      <td><u>74.2</u></td>
+      <td>74.2*</td>
       <td>57.2</td>
       <td>85.9</td>
       <td>88.9</td>
@@ -181,7 +181,7 @@ python -u train_wsi_model.py \
       <td>95.6</td>
       <td>54.2</td>
       <td>62.2</td>
-      <td><u>61.4</u></td>
+      <td>61.4*</td>
       <td>86.6</td>
       <td>88.2</td>
       <td>94.7</td>
@@ -213,35 +213,35 @@ python -u train_wsi_model.py \
       <td>84.3</td>
       <td>88.5</td>
       <td>95.9</td>
-      <td><u>56.6</u></td>
+      <td>56.6*</td>
     </tr>
     <tr>
       <td>TITAN</td>
       <td><strong>74.8</strong></td>
       <td><strong>78.8</strong></td>
       <td><strong>89.2</strong></td>
-      <td><u>96.6</u></td>
+      <td>96.6*</td>
       <td>63.8</td>
-      <td><u>74.2</u></td>
+      <td>74.2*</td>
       <td>59.8</td>
       <td>86.0</td>
-      <td><u>91.4</u></td>
+      <td>91.4*</td>
       <td><strong>96.7</strong></td>
       <td>40.5</td>
     </tr>
     <tr>
       <td><strong>CARE</strong></td>
-      <td><u>74.0</u></td>
-      <td><u>78.7</u></td>
-      <td><u>89.0</u></td>
+      <td>74.0*</td>
+      <td>78.7*</td>
+      <td>89.0*</td>
       <td><strong>96.8</strong></td>
-      <td><u>65.5</u></td>
+      <td>65.5*</td>
       <td><strong>74.4</strong></td>
-      <td><u>61.4</u></td>
+      <td>61.4*</td>
       <td><strong>88.9</strong></td>
       <td><strong>91.5</strong></td>
-      <td><u>96.6</u></td>
-      <td><strong>63.0</td>
+      <td>96.6*</td>
+      <td><strong>63.0</strong></td>
     </tr>
   </tbody>
 </table>
