@@ -13,7 +13,7 @@
 </div>
 
 ## 🔥 Update
-- [2026.04.09] Our paper was selected as a CVPR 2026 Spotlight presentation.
+- [2026.04.09] Our paper was selected as a CVPR 2026 Highlight presentation.
 - [2026.03.11] The model weight was released in [Hugging Face](https://huggingface.co/Zipper-1/CARE).
 - [2026.02.21] Our paper was accepted by CVPR 2026.
 
