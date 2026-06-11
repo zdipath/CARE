@@ -252,20 +252,23 @@ python -u train_wsi_model.py \
 If you find our work useful in your research, please consider citing CARE and CONCH v1.5:
 
 ```
-@article{zhang2026care,
+@inproceedings{zhang2026care,
   title={CARE: A Molecular-Guided Foundation Model with Adaptive Region Modeling for Whole Slide Image Analysis},
   author={Zhang, Di and Gong, Zhangpeng and Pang, Xiaobo and Liu, Jiashuai and Lu, Junbo and Cui, Hao and Ge, Jiusong and Zeng, Zhi and Yi, Kai and Li, Yinghua and others},
-  journal={arXiv preprint arXiv:2602.21637},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={21078--21088},
   year={2026}
 }
 ```
 ```
-@article{ding2025multimodal,
-  title={A multimodal whole-slide foundation model for pathology},
-  author={Ding, Tong and Wagner, Sophia J and Song, Andrew H and Chen, Richard J and Lu, Ming Y and Zhang, Andrew and Vaidya, Anurag J and Jaume, Guillaume and Shaban, Muhammad and Kim, Ahrong and others},
-  journal={Nature Medicine},
-  pages={1--13},
-  year={2025},
+@article{lu2024visual,
+  title={A visual-language foundation model for computational pathology},
+  author={Lu, Ming Y and Chen, Bowen and Williamson, Drew FK and Chen, Richard J and Liang, Ivy and Ding, Tong and Jaume, Guillaume and Odintsov, Igor and Le, Long Phi and Gerber, Georg and others},
+  journal={Nature medicine},
+  volume={30},
+  number={3},
+  pages={863--874},
+  year={2024},
   publisher={Nature Publishing Group US New York}
 }
 ```
