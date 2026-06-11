@@ -9,7 +9,7 @@
 [![a](https://img.shields.io/badge/Model-huggingface-blue)](https://huggingface.co/Zipper-1/CARE)
 [![arXiv](https://img.shields.io/badge/Arxiv-2602.21637-red
 )](https://arxiv.org/abs/2602.21637)
-[![arXiv](https://img.shields.io/badge/CVPR-red
+[![arXiv](https://img.shields.io/badge/CVPR-2026-red
 )](https://openaccess.thecvf.com/content/CVPR2026/html/Zhang_CARE_A_Molecular-Guided_Foundation_Model_with_Adaptive_Region_Modeling_for_CVPR_2026_paper.html)
 </div>
 
